@@ -2,13 +2,12 @@ package ru.craftcoderr.tcpp.insproject
 
 class CarInsContract(
     client: Client,
-    state: ContractState,
-    flag: StateFlag,
-    enterTime: Long,
     expiresAt: Long,
-    dissolveReason: String?,
-    val car: Car
-) : Contract(client, state, flag, enterTime, expiresAt, dissolveReason) {
+    val car: Car,
+    flag: StateFlag = StateFlag.CREATED,
+    enterTime: Long = 0,
+    dissolveReason: String? = null
+    ) : Contract(client, expiresAt, flag, enterTime, dissolveReason) {
 
     override fun getText(): String {
         return "Страховой договор на автомобиль ${car.model} с номером ${car.regNumber}. Сумма страховой премии $premium"

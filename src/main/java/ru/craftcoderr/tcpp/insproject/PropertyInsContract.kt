@@ -2,13 +2,12 @@ package ru.craftcoderr.tcpp.insproject
 
 class PropertyInsContract(
     client: Client,
-    state: ContractState,
-    flag: StateFlag,
-    enterTime: Long,
     expiresAt: Long,
-    dissolveReason: String?,
-    val property: Property
-) : Contract(client,  state, flag, enterTime, expiresAt, dissolveReason) {
+    val property: Property,
+    flag: StateFlag = StateFlag.CREATED,
+    enterTime: Long = 0,
+    dissolveReason: String? = null
+) : Contract(client, expiresAt, flag, enterTime, dissolveReason) {
 
     override fun getText(): String {
         return "Договор страхования недвижимого имущества. Сумма премии: $premium."

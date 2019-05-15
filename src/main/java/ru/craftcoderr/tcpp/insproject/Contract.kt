@@ -2,13 +2,20 @@ package ru.craftcoderr.tcpp.insproject
 
 abstract class Contract(
     val client: Client,
-    var state: ContractState,
-    var flag: StateFlag,
+    var expiresAt: Long,
+    var flag: StateFlag = StateFlag.CREATED,
     var enterTime: Long = 0,
-    var expiresAt: Long = 0,
     var dissolveReason: String? = null
 ) {
+
     var premium: Int = 0
+    var state: ContractState = when(flag) {
+        StateFlag.CREATED -> CreatedState(this)
+        StateFlag.ACTIVE -> ActiveState(this)
+        StateFlag.CANCELLED -> CancelledState(this)
+        StateFlag.COMPLETED -> CompletedState(this)
+        StateFlag.DISSOLVED -> DissolvedState(this)
+    }
 
     fun enter() {
         state.enter()
