@@ -5,8 +5,9 @@ import ru.craftcoderr.tcpp.insproject.core.contract.state.*
 
 abstract class Contract(
     val client: Client,
+    val id: String,
     var expiresAt: Long,
-    var flag: StateFlag = StateFlag.CREATED,
+    public var flag: StateFlag = StateFlag.CREATED,
     var enterTime: Long = 0,
     var dissolveReason: String? = null
 ) {
@@ -15,15 +16,9 @@ abstract class Contract(
     var state: ContractState = when(flag) {
         StateFlag.CREATED -> CreatedState(this)
         StateFlag.ACTIVE -> ActiveState(this)
-        StateFlag.CANCELLED -> CancelledState(
-            this
-        )
-        StateFlag.COMPLETED -> CompletedState(
-            this
-        )
-        StateFlag.DISSOLVED -> DissolvedState(
-            this
-        )
+        StateFlag.CANCELLED -> CancelledState(this)
+        StateFlag.COMPLETED -> CompletedState(this)
+        StateFlag.DISSOLVED -> DissolvedState(this)
     }
 
     fun enter() {
@@ -44,10 +39,6 @@ abstract class Contract(
 
     fun isExpired() : Boolean {
         return System.currentTimeMillis() >= expiresAt
-    }
-
-    fun persist() {
-
     }
 
     abstract fun getText() : String

@@ -22,7 +22,7 @@ class CreateContractsTest {
     @BeforeEach
     fun init() {
         client = Client("Test", "123456", "test@mail.com")
-        clientRepository = mock<ClientRepository>{
+        clientRepository = mock {
             whenever(mock.getClient("123456")).thenReturn(client)
         }
         contractRepository = mock()

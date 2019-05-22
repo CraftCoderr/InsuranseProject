@@ -6,4 +6,6 @@ interface ContractRepository {
 
     fun addContract(contract: Contract)
 
+    fun updateContract(contract: Contract)
+
 }

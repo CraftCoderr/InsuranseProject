@@ -8,10 +8,11 @@ class CarInsContract(
     client: Client,
     expiresAt: Long,
     val car: Car,
+    id: String = "",
     flag: StateFlag = StateFlag.CREATED,
     enterTime: Long = 0,
     dissolveReason: String? = null
-    ) : Contract(client, expiresAt, flag, enterTime, dissolveReason) {
+    ) : Contract(client, id, expiresAt, flag, enterTime, dissolveReason) {
 
     override fun getText(): String {
         return "Страховой договор на автомобиль ${car.model} с номером ${car.regNumber}. Сумма страховой премии $premium"

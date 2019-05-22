@@ -7,15 +7,16 @@ class Client(
     var name: String,
     var documentId: String,
     var email: String,
-    val contracts: MutableList<Contract> = ArrayList(),
+    val contracts: MutableMap<String, Contract> = HashMap(),
     var blocked: Boolean = false
 ) {
 
     fun addContract(contract: Contract) {
-        contracts.add(contract)
+        contracts[contract.id] = contract
     }
 
-    fun persist() {
-
+    fun getContract(id: String): Contract? {
+        return contracts[id]
     }
+
 }

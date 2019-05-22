@@ -35,6 +35,15 @@ class OpertorService(private val clientRepository: ClientRepository, private val
         return contract
     }
 
+    fun enterContract(documentId: String, contractId: String) {
+        val client = clientRepository.getClient(documentId)
+        val contract = client.getContract(contractId)
+        contract?.let {
+            it.enter()
+            contractRepository.updateContract(it)
+        }
+    }
+
     private fun addContract(client: Client, contract: Contract) {
         contract.calculatePermium()
         contractRepository.addContract(contract)
