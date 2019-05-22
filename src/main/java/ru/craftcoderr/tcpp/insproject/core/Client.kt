@@ -19,4 +19,8 @@ class Client(
         return contracts[id]
     }
 
+    fun getContracts(): Collection<Contract> {
+        return contracts.values
+    }
+
 }
