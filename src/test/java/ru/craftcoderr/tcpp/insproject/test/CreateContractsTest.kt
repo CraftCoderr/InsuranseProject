@@ -45,7 +45,6 @@ class CreateContractsTest {
     fun test_PersonContract() {
         val contract = service.createPersonInsContract(
             "123456",
-            1,
             System.currentTimeMillis(),
             Person("Person", GenderType.MALE, 25, true)
         )
