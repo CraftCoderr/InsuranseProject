@@ -8,26 +8,31 @@ import ru.craftcoderr.tcpp.insproject.core.contract.PropertyInsContract
 
 class OpertorService(private val clientRepository: ClientRepository, private val contractRepository: ContractRepository) {
 
-    fun addClient(name: String, documentId: String, email: String) {
+    fun addClient(name: String, documentId: String, email: String) : Client {
         var client = Client(name, documentId, email)
         clientRepository.addClient(client)
+        return client
     }
 
-    fun createCarInsContract(documentId: String, expiresAt: Long, car: Car) {
+    fun createCarInsContract(documentId: String, expiresAt: Long, car: Car) : CarInsContract {
         val client = clientRepository.getClient(documentId)
-        addContract(client, CarInsContract(client, expiresAt, car))
+        val contract = CarInsContract(client, expiresAt, car)
+        addContract(client, contract)
+        return contract
     }
 
-    fun createPersonInsContract(documentId: String, premium: Int, expiresAt: Long, person: Person) {
+    fun createPersonInsContract(documentId: String, premium: Int, expiresAt: Long, person: Person): PersonInsContract {
         val client = clientRepository.getClient(documentId)
-        addContract(client, PersonInsContract(client, expiresAt, person))
+        val contract = PersonInsContract(client, expiresAt, person)
+        addContract(client, contract)
+        return contract
     }
 
-    fun createPropertyInsContract(documentId: String, expiresAt: Long, property: Property) {
+    fun createPropertyInsContract(documentId: String, expiresAt: Long, property: Property): PropertyInsContract {
         val client = clientRepository.getClient(documentId)
-        addContract(client,
-            PropertyInsContract(client, expiresAt, property)
-        )
+        val contract = PropertyInsContract(client, expiresAt, property)
+        addContract(client, contract)
+        return contract
     }
 
     private fun addContract(client: Client, contract: Contract) {
