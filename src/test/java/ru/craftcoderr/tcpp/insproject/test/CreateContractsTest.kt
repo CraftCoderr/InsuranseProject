@@ -30,7 +30,7 @@ class CreateContractsTest {
     }
 
     @Test
-    fun test_CarContract() {
+    fun CreateCarContract() {
         val contract = service.createCarInsContract(
             "123456",
             System.currentTimeMillis(),
@@ -42,7 +42,7 @@ class CreateContractsTest {
     }
 
     @Test
-    fun test_PersonContract() {
+    fun CreatePersonContract() {
         val contract = service.createPersonInsContract(
             "123456",
             System.currentTimeMillis(),
@@ -55,7 +55,7 @@ class CreateContractsTest {
 
 
     @Test
-    fun test_PropertyContract() {
+    fun CreatePropertyContract() {
         val contract = service.createPropertyInsContract(
             "123456",
             System.currentTimeMillis(),
