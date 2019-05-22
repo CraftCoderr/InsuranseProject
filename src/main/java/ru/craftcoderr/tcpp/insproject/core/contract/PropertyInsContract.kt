@@ -1,4 +1,8 @@
-package ru.craftcoderr.tcpp.insproject
+package ru.craftcoderr.tcpp.insproject.core.contract
+
+import ru.craftcoderr.tcpp.insproject.core.Client
+import ru.craftcoderr.tcpp.insproject.core.Property
+import ru.craftcoderr.tcpp.insproject.core.StateFlag
 
 class PropertyInsContract(
     client: Client,

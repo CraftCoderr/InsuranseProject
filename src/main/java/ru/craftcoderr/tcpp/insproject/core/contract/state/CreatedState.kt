@@ -1,5 +1,7 @@
-package ru.craftcoderr.tcpp.insproject
+package ru.craftcoderr.tcpp.insproject.core.contract.state
 
+import ru.craftcoderr.tcpp.insproject.core.StateFlag
+import ru.craftcoderr.tcpp.insproject.core.contract.Contract
 import java.lang.IllegalStateException
 
 class CreatedState(context: Contract) : ContractState(context) {

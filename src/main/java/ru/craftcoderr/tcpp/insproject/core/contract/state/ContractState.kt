@@ -1,4 +1,6 @@
-package ru.craftcoderr.tcpp.insproject
+package ru.craftcoderr.tcpp.insproject.core.contract.state
+
+import ru.craftcoderr.tcpp.insproject.core.contract.Contract
 
 abstract class ContractState(protected var context: Contract) {
 

@@ -1,5 +1,6 @@
-package ru.craftcoderr.tcpp.insproject
+package ru.craftcoderr.tcpp.insproject.core
 
+import ru.craftcoderr.tcpp.insproject.core.contract.Contract
 import java.util.*
 
 class Client(

@@ -1,4 +1,4 @@
-package ru.craftcoderr.tcpp.insproject
+package ru.craftcoderr.tcpp.insproject.core
 
 import java.io.Serializable
 

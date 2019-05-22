@@ -1,10 +1,16 @@
 package ru.craftcoderr.tcpp.insproject
 
-class OpertorService(private val clientRepository: ClientRepository) {
+import ru.craftcoderr.tcpp.insproject.core.*
+import ru.craftcoderr.tcpp.insproject.core.contract.CarInsContract
+import ru.craftcoderr.tcpp.insproject.core.contract.Contract
+import ru.craftcoderr.tcpp.insproject.core.contract.PersonInsContract
+import ru.craftcoderr.tcpp.insproject.core.contract.PropertyInsContract
+
+class OpertorService(private val clientRepository: ClientRepository, private val contractRepository: ContractRepository) {
 
     fun addClient(name: String, documentId: String, email: String) {
         var client = Client(name, documentId, email)
-        client.persist()
+        clientRepository.addClient(client)
     }
 
     fun createCarInsContract(documentId: String, expiresAt: Long, car: Car) {
@@ -19,12 +25,14 @@ class OpertorService(private val clientRepository: ClientRepository) {
 
     fun createPropertyInsContract(documentId: String, expiresAt: Long, property: Property) {
         val client = clientRepository.getClient(documentId)
-        addContract(client, PropertyInsContract(client, expiresAt, property))
+        addContract(client,
+            PropertyInsContract(client, expiresAt, property)
+        )
     }
 
     private fun addContract(client: Client, contract: Contract) {
         contract.calculatePermium()
-        contract.persist()
+        contractRepository.addContract(contract)
         client.addContract(contract)
         clientRepository.addContract(client, contract)
     }

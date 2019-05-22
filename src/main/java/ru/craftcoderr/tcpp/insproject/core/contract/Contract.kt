@@ -1,4 +1,7 @@
-package ru.craftcoderr.tcpp.insproject
+package ru.craftcoderr.tcpp.insproject.core.contract
+
+import ru.craftcoderr.tcpp.insproject.core.*
+import ru.craftcoderr.tcpp.insproject.core.contract.state.*
 
 abstract class Contract(
     val client: Client,
@@ -12,9 +15,15 @@ abstract class Contract(
     var state: ContractState = when(flag) {
         StateFlag.CREATED -> CreatedState(this)
         StateFlag.ACTIVE -> ActiveState(this)
-        StateFlag.CANCELLED -> CancelledState(this)
-        StateFlag.COMPLETED -> CompletedState(this)
-        StateFlag.DISSOLVED -> DissolvedState(this)
+        StateFlag.CANCELLED -> CancelledState(
+            this
+        )
+        StateFlag.COMPLETED -> CompletedState(
+            this
+        )
+        StateFlag.DISSOLVED -> DissolvedState(
+            this
+        )
     }
 
     fun enter() {

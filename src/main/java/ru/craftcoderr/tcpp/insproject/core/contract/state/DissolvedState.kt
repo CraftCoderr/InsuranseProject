@@ -1,5 +1,6 @@
-package ru.craftcoderr.tcpp.insproject
+package ru.craftcoderr.tcpp.insproject.core.contract.state
 
+import ru.craftcoderr.tcpp.insproject.core.contract.Contract
 import java.lang.IllegalStateException
 
 class DissolvedState(context: Contract) : ContractState(context) {
