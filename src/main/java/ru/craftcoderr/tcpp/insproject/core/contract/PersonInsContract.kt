@@ -18,9 +18,7 @@ class PersonInsContract(
     }
 
     override fun calculatePermium() {
-        premium = 1 / person.age *
-                AGE_COEFFICIENT *
-                PRICE_COEFFICIENT
+        premium = (((1.0f / person.age) * AGE_COEFFICIENT * PRICE_COEFFICIENT).toInt())
     }
 
     companion object {

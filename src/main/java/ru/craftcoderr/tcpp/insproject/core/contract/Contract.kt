@@ -11,7 +11,7 @@ abstract class Contract(
     var dissolveReason: String? = null
 ) {
 
-    var premium: Int = 0
+    public var premium: Int = 0
     var state: ContractState = when(flag) {
         StateFlag.CREATED -> CreatedState(this)
         StateFlag.ACTIVE -> ActiveState(this)

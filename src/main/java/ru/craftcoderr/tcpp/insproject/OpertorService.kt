@@ -21,7 +21,7 @@ class OpertorService(private val clientRepository: ClientRepository, private val
         return contract
     }
 
-    fun createPersonInsContract(documentId: String, premium: Int, expiresAt: Long, person: Person): PersonInsContract {
+    fun createPersonInsContract(documentId: String, expiresAt: Long, person: Person): PersonInsContract {
         val client = clientRepository.getClient(documentId)
         val contract = PersonInsContract(client, expiresAt, person)
         addContract(client, contract)
