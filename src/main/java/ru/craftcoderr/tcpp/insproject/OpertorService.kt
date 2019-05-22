@@ -44,6 +44,18 @@ class OpertorService(private val clientRepository: ClientRepository, private val
         }
     }
 
+    fun banClient(documentId: String) {
+        val client = clientRepository.getClient(documentId)
+        client.blocked = true
+        clientRepository.updateClient(client)
+    }
+
+    fun pardonClient(documentId: String) {
+        val client = clientRepository.getClient(documentId)
+        client.blocked = false
+        clientRepository.updateClient(client)
+    }
+
     private fun addContract(client: Client, contract: Contract) {
         contract.calculatePermium()
         contractRepository.addContract(contract)

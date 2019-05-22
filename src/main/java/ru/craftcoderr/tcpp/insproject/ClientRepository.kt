@@ -11,4 +11,6 @@ interface ClientRepository {
 
     fun getClient(documentId: String) : Client
 
+    fun updateClient(client: Client)
+
 }

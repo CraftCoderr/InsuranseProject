@@ -9,7 +9,7 @@ class PoliceService(private val clientRepository: ClientRepository) {
         val c = client.getContracts()
             .filter { c -> c is CarInsContract }
             .map { c -> c as CarInsContract}
-            .firstOrNull { c -> c.car.regNumber.equals(regNumber) && c.car.vin.equals(vin) && !c.isExpired() }
+            .firstOrNull { c -> c.car.regNumber == regNumber && c.car.vin == vin && !c.isExpired() }
         return c != null
     }
 
