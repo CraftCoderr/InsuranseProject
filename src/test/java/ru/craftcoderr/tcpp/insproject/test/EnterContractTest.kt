@@ -44,6 +44,31 @@ class EnterContractTest {
                 enterTime = System.currentTimeMillis()
             )
             client.addContract(contract2)
+            val contract3 = PropertyInsContract(client,
+                System.currentTimeMillis(),
+                Property(200000, "some, TRUE city"),
+                id = "c3",
+                flag = StateFlag.CANCELLED,
+                enterTime = System.currentTimeMillis()
+            )
+            client.addContract(contract3)
+            val contract4 = PropertyInsContract(client,
+                System.currentTimeMillis(),
+                Property(200000, "addressANOTHER, mountain"),
+                id = "c4",
+                flag = StateFlag.COMPLETED,
+                enterTime = System.currentTimeMillis()
+            )
+            client.addContract(contract4)
+            val contract5 = PropertyInsContract(client,
+                System.currentTimeMillis(),
+                Property(200000, "Test city, mountain st."),
+                id = "c5",
+                flag = StateFlag.DISSOLVED,
+                enterTime = System.currentTimeMillis(),
+                dissolveReason = "Test reason"
+            )
+            client.addContract(contract5)
             clientRepository = mock {
                 whenever(mock.getClient("123456")).thenReturn(client)
             }
@@ -53,17 +78,38 @@ class EnterContractTest {
     }
 
     @Test
-    fun test_ContractEnterCreated() {
+    fun ContractEnterCreated() {
         service.enterContract("123456", "c1")
         assertEquals(client.getContract("c1")!!.flag, StateFlag.ACTIVE)
         verify(contractRepository).updateContract(contract1)
     }
 
     @Test
-    fun test_ContractEnterActive() {
+    fun ContractEnterActive() {
         assertThrows(RuntimeException::class.java, {
             service.enterContract("123456", "c2")
         }, "Can't cancel ACTIVE contract. Use Contract.dissolve(...)")
+    }
+
+    @Test
+    fun ContractEnterCancelled() {
+        assertThrows(RuntimeException::class.java, {
+            service.enterContract("123456", "c3")
+        }, "Can't enter to CANCELLED contract")
+    }
+
+    @Test
+    fun ContractEnterCompleted() {
+        assertThrows(RuntimeException::class.java, {
+            service.enterContract("123456", "c4")
+        }, "Can't enter to COMPLETED contract")
+    }
+
+    @Test
+    fun ContractEnterDissolved() {
+        assertThrows(RuntimeException::class.java, {
+            service.enterContract("123456", "c5")
+        }, "Can't enter to DISSOLVED contract")
     }
 
 }

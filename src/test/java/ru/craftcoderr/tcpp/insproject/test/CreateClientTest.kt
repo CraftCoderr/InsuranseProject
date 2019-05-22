@@ -25,7 +25,7 @@ class CreateClientTest {
     }
 
     @Test
-    fun test_addClient() {
+    fun CreateClient() {
         val client = service.addClient("Test", "123456", "test@mail.com")
         verify(clientRepository).addClient(client)
     }
